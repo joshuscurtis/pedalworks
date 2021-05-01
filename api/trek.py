@@ -17,7 +17,6 @@ def finder(pn):
 
         raw = requests.get(url, headers=headers1)
         soup = BeautifulSoup(raw.content, "html.parser")
-        print(soup.title.text)
         title = soup.title.text.split('|')
         print()
         print("----------INTRO----------------")
@@ -69,6 +68,8 @@ def finder(pn):
         print('not a accessorey!')
         print("Unexpected error:", sys.exc_info())
 
+    return soup.title.text
+
 
 
 
@@ -76,10 +77,10 @@ class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
 
-        finder(123)
+        finder(32564)
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.send_header('Cache-Control', 's-maxage=5, stale-while-revalidate=2629743')
         self.end_headers()
-        self.wfile.write("hello".encode())
+        self.wfile.write(finder(32564).encode())
         return
