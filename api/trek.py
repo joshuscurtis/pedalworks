@@ -76,7 +76,7 @@ class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
 
-
+        finder(123)
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.send_header('Cache-Control', 's-maxage=5, stale-while-revalidate=2629743')
