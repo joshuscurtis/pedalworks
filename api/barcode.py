@@ -37,6 +37,7 @@ class handler(BaseHTTPRequestHandler):
         path = self.path
         sku = path[17:]
         barcode = "none"
+        
         try:
             barcode = getBarcode(sku)
         except:
