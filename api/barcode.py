@@ -34,8 +34,11 @@ class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
 
-        getBarcode("YQBY7I55SB")
-        print(self.path)
+        path = self.path
+        barcode = path.split('/')[1]
+        print(barcode)
+
+        getBarcode(barcode)
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
