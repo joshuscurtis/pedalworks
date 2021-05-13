@@ -41,7 +41,7 @@ class handler(BaseHTTPRequestHandler):
         try:
             barcode = getBarcode(sku)
         except:
-            self.send_response(200)
+            self.send_response(400)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
             self.wfile.write("sku not found".encode())
