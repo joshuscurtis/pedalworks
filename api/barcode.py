@@ -35,7 +35,7 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         path = self.path
-        barcode = path[15:]
+        barcode = path[17:]
         print(barcode)
 
         getBarcode(barcode)
