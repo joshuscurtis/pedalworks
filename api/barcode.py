@@ -37,12 +37,13 @@ class handler(BaseHTTPRequestHandler):
         path = self.path
         sku = path[17:]
         barcode = "none"
-        
+
         try:
             barcode = getBarcode(sku)
         except:
             self.send_response(400)
             self.wfile.write("sku not found".encode())
+            return
 
         print("SKU: " + sku)
 
