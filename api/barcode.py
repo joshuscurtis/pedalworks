@@ -35,12 +35,18 @@ class handler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         path = self.path
-        barcode = path[17:]
-        print(barcode)
+        sku = path[17:]
+        barcode = "none"
+        try:
+            barcode = getBarcode(sku)
+        except:
+            self.send_response(400)
+            self.wfile.write("sku not found".encode())
 
-        getBarcode(barcode)
+        print("SKU: " + sku)
+
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        self.wfile.write(getBarcode(barcode).encode())
+        self.wfile.write(barcode.encode())
         return
