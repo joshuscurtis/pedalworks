@@ -2,18 +2,28 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr';
 import fetch from 'isomorphic-unfetch';
+import { useState } from 'react'
 
-const API_URL = 'https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB';
 
-async function fetcher(url) {
-  const res = await fetch(url);
-  const json = await res.json();
-  return json;
-}
+
 
 
 export default function Home() {
-  const { data, error } = useSWR(API_URL, fetcher);
+  const [sku, setSKU] = useState("YQBY7I61SB")
+  const API_URL = 'api/barcode?sku=' + sku;
+  var { data, error } = useSWR(API_URL, fetcher);
+
+  data = {"title": "Bianchi Specialissima Carbon Disc Road Bike 2021 Black/Mermaid", "sku": "YQBY7I61SB", "barcode": "8032809797814"}
+  async function fetcher(url) {
+    const res = await fetch(url);
+    const json = await res.json();
+    return json;
+  }
+  
+
+  
+
+
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -39,10 +49,11 @@ export default function Home() {
         <div className={styles.grid}>
           <a className={styles.card}>
             <h3>Barcode Hunter &rarr;</h3>
-            <input type="text" name="sku" />
+            <input type="text" name="sku" 
+          onChange={e => setSKU(e.target.value)}    />
             <p><strong>Name: </strong> {data.title}</p>
             <p><strong>Barcode: </strong> {data.barcode}</p>
-            <p><strong>SKU: </strong> {data.sku}</p>
+            <p><strong>Name: </strong> {data.sku}</p>
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
