@@ -1,24 +1,22 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import useSWR from 'swr';
 
+const API_URL = 'https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB';
 
-export async function getStaticProps(context) {
-  const res = await fetch("https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB")
-  const data = await res.json()
-
-  if (!data) {
-    return {
-      notFound: true,
-    }
-  }
-
-  return {
-    props: { data }, // will be passed to the page component as props
-  }
+async function fetcher(url) {
+  const res = await fetch(url);
+  const json = await res.json();
+  return json;
 }
 
 
 export default function Home() {
+  const { data, error } = useSWR(API_URL, fetcher);
+
+
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -29,7 +27,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-          {props.data}
+          {data}
         </h1>
 
         <p className={styles.description}>
