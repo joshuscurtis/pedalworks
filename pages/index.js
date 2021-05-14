@@ -7,8 +7,7 @@ import { useState } from 'react'
 
 
 
-
-export default function Home() {
+function Barcode() {
   const [sku, setSKU] = useState("YQBY7I61SB")
   const API_URL = 'api/barcode?sku=' + sku;
   var { data, error } = useSWR(API_URL, fetcher);
@@ -25,10 +24,21 @@ export default function Home() {
     }
   }
 
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
+  if (error) return <a className={styles.card}><h3>Failed to load</h3></a>;
+  if (!data) return <a className={styles.card}><h3>Loading</h3></a>;
   
+  return (
+    <a className={styles.card}>
+      <h3>Barcode Hunter &rarr;</h3>
+      <input type="text" name="sku" onKeyDown={handleKeyDown}     />
+      <p><strong>Name: </strong> {data.title}</p>
+      <p><strong>Barcode: </strong> {data.barcode}</p>
+      <p><strong>Name: </strong> {data.sku}</p>
+    </a>
+  )
+}
 
+export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -47,13 +57,7 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a className={styles.card}>
-            <h3>Barcode Hunter &rarr;</h3>
-            <input type="text" name="sku" onKeyDown={handleKeyDown}     />
-            <p><strong>Name: </strong> {data.title}</p>
-            <p><strong>Barcode: </strong> {data.barcode}</p>
-            <p><strong>Name: </strong> {data.sku}</p>
-          </a>
+          <Barcode/>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
             <h3>Learn &rarr;</h3>
