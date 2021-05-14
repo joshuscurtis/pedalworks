@@ -18,7 +18,7 @@ def getBarcode(part_number):
 
     raw = requests.get(url, headers=headers1)
     soup = BeautifulSoup(raw.content, "html.parser")
-    title = soup.title.text
+    title = soup.title.text.strip()
     body = raw.content.decode('utf-8')
     x = re.search(regex, body)
     data = x.group(1)
