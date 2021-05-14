@@ -39,6 +39,7 @@ export default function Home() {
         <div className={styles.grid}>
           <a className={styles.card}>
             <h3>Barcode Hunter &rarr;</h3>
+            <input type="text" name="sku" />
             <p>Name: {data.name}</p>
             <p>Barcode: {data.barcode}</p>
             <p>SKU: {data.sku}</p>
