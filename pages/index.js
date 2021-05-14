@@ -15,25 +15,26 @@ async function fetcher(url) {
 export default function Home() {
   const { data, error } = useSWR(API_URL, fetcher);
 
-  console.log(data);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
+  
+  if(data) {
+    console.log(data);
+    console.log(data.barcode);
+  }
 
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-        {data.title}
-        {data.barcode}
-        {JSON.stringify(data)}
-)
-
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+          {data.title}
+          {data.barcode}
         </h1>
 
         <p className={styles.description}>
