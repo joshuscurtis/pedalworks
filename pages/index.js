@@ -1,6 +1,23 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
+
+export async function getStaticProps(context) {
+  const res = await fetch(`https://https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB`)
+  const data = await res.json()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  }
+}
+
+
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -12,6 +29,7 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
+          {props.data}
         </h1>
 
         <p className={styles.description}>
