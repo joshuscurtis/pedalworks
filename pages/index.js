@@ -24,8 +24,8 @@ function Barcode() {
     }
   }
 
-  if (error) return <a className={styles.card}><h3>Failed to load</h3></a>;
-  if (!data) return <a className={styles.card}><h3>Loading</h3></a>;
+  if (error) return <a className={styles.card}><h3>Failed to load</h3><input type="text" name="sku" onKeyDown={handleKeyDown}/></a>;
+  if (!data) return <a className={styles.card}><h3>Loading</h3><input type="text" name="sku" onKeyDown={handleKeyDown}/></a>;
   
   return (
     <a className={styles.card}>
