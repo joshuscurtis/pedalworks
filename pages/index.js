@@ -25,16 +25,22 @@ function Barcode() {
   }
 
   if (error) return <a className={styles.card}><h3>Failed to load</h3><input type="text" name="sku" onKeyDown={handleKeyDown}/></a>;
-  if (!data) return <a className={styles.card}><h3>Loading</h3><input type="text" name="sku" onKeyDown={handleKeyDown}/></a>;
+  if (!data) return <a className={styles.card}><h3>Loading...</h3><input type="text" name="sku" onKeyDown={handleKeyDown}/></a>;
   
   return (
+    <div>
     <a className={styles.card}>
       <h3>Barcode Hunter &rarr;</h3>
       <input type="text" name="sku" onKeyDown={handleKeyDown}     />
+    </a>
+
+    <a className={styles.card}>
+    <h3>Data</h3>
       <p><strong>Name: </strong> {data.title}</p>
       <p><strong>Barcode: </strong> {data.barcode}</p>
       <p><strong>Name: </strong> {data.sku}</p>
     </a>
+  </div>
   )
 }
 
@@ -59,10 +65,7 @@ export default function Home() {
         <div className={styles.grid}>
           <Barcode/>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+      
 
           <a
             href="https://github.com/vercel/next.js/tree/master/examples"
