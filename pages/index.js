@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import 
 
 
 export async function getStaticProps(context) {
-  const res = await fetch(`https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB`)
+  const res = await fetch("https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB")
   const data = await res.json()
 
   if (!data) {
