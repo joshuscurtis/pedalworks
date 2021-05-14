@@ -15,6 +15,7 @@ async function fetcher(url) {
 export default function Home() {
   const { data, error } = useSWR(API_URL, fetcher);
 
+  console.log(data);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
