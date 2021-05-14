@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import json
 from http.server import BaseHTTPRequestHandler
 
+
 def getBarcode(part_number):
     url = "https://www.rutlandcycling.com/facetresults.aspx?Term="+part_number
     regex = "var universal_pageType = \'product\'; var universal_product =([^|]+);<"
@@ -27,7 +28,7 @@ def getBarcode(part_number):
 
     for attribute in attributes:
         if (attribute['code'] == part_number):
-            return (attribute['barcode'])
+            return ([attribute['barcode'], title])
 
 
 class handler(BaseHTTPRequestHandler):
@@ -50,8 +51,11 @@ class handler(BaseHTTPRequestHandler):
         print("SKU: " + sku)
         data = {}
 
+        data['title'] = barcode[1]
         data['sku'] = sku
-        data['barcode'] = barcode
+        data['barcode'] = barcode[0]
+
+
         jsonData = json.dumps(data)
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
