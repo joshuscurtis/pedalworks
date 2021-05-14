@@ -13,7 +13,6 @@ export default function Home() {
   const API_URL = 'api/barcode?sku=' + sku;
   var { data, error } = useSWR(API_URL, fetcher);
 
-  data = {"title": "Bianchi Specialissima Carbon Disc Road Bike 2021 Black/Mermaid", "sku": "YQBY7I61SB", "barcode": "8032809797814"}
   async function fetcher(url) {
     const res = await fetch(url);
     const json = await res.json();
