@@ -19,7 +19,11 @@ export default function Home() {
     return json;
   }
   
-
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      setSKU(e.target.value);
+    }
+  }
 
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
@@ -45,8 +49,7 @@ export default function Home() {
         <div className={styles.grid}>
           <a className={styles.card}>
             <h3>Barcode Hunter &rarr;</h3>
-            <input type="text" name="sku" 
-          onEnter={e => setSKU(e.target.value)}    />
+            <input type="text" name="sku" onKeyDown={handleKeyDown}     />
             <p><strong>Name: </strong> {data.title}</p>
             <p><strong>Barcode: </strong> {data.barcode}</p>
             <p><strong>Name: </strong> {data.sku}</p>
