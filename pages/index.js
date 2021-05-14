@@ -31,7 +31,7 @@ function Barcode() {
     <div className={styles.container}>
     <a className={styles.card}>
       <h3>Barcode Hunter &rarr;</h3>
-      <input type="text" name="sku" onKeyDown={handleKeyDown}     />
+      <input type="text" name="sku" onKeyDown={handleKeyDown} />
     </a>
 
     <a className={styles.card}>
