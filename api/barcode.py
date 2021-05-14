@@ -48,9 +48,13 @@ class handler(BaseHTTPRequestHandler):
             return
 
         print("SKU: " + sku)
+        data = {}
 
+        data['sku'] = sku
+        data['barcode'] = barcode
+        jsonData = json.dumps(data)
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        self.wfile.write(barcode.encode())
+        self.wfile.write(jsonData.encode())
         return
