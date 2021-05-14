@@ -18,10 +18,6 @@ export default function Home() {
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
   
-  if(data) {
-    console.log(data);
-    console.log(data.barcode);
-  }
 
   return (
     <div className={styles.container}>
@@ -33,8 +29,6 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-          {data.title}
-          {data.barcode}
         </h1>
 
         <p className={styles.description}>
@@ -43,9 +37,11 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
+          <a className={styles.card}>
+            <h3>Barcode Hunter &rarr;</h3>
+            <p>Name: {data.name}</p>
+            <p>Barcode: {data.barcode}</p>
+            <p>SKU: {data.sku}</p>
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
