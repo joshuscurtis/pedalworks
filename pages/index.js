@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr';
+import fetch from 'isomorphic-unfetch';
 
 const API_URL = 'https://api.12nine.xyz/api/barcode?sku=YQBY7I61SB';
 
