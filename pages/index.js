@@ -15,7 +15,8 @@ export default function Home() {
   const { data, error } = useSWR(API_URL, fetcher);
 
 
-
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
   return (
     <div className={styles.container}>
