@@ -24,8 +24,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         {data.title}
         {data.barcode}
-        {stringify(data)}
-}
+        {JSON.stringify(data)}
+)
 
       </Head>
 
