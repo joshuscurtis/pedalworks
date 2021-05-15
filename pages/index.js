@@ -28,13 +28,10 @@ function Barcode() {
   if (!data) return <a className={styles.card}><h3>Loading...</h3><input type="text" name="sku" onKeyDown={handleKeyDown}/></a>;
   
   return (
-    <div>
+    <div className={styles.container}>
     <a className={styles.card}>
       <h3>Barcode Hunter &rarr;</h3>
       <input type="text" name="sku" onKeyDown={handleKeyDown} />
-    </a>
-
-    <a className={styles.card}>
     <h3>Data</h3>
       <p><strong>Name: </strong> {data.title}</p>
       <p><strong>Barcode: </strong> {data.barcode}</p>
