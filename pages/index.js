@@ -29,12 +29,14 @@ function Barcode() {
   
   return (
     <a className={styles.card}>
-      <h3>Barcode Hunter &rarr;</h3>
-      <input type="text" name="sku" onKeyDown={handleKeyDown} />
-    <h3>Data</h3>
-      <p><strong>Name: </strong> {data.title}</p>
-      <p><strong>Barcode: </strong> {data.barcode}</p>
-      <p><strong>Name: </strong> {data.sku}</p>
+        <h3>Barcode Hunter &rarr;</h3>
+        <input type="text" name="sku" onKeyDown={handleKeyDown} />
+        <a className={styles.card}>
+          <h3>Data</h3>
+          <p><strong>Name: </strong> {data.title}</p>
+          <p><strong>Barcode: </strong> {data.barcode}</p>
+          <p><strong>SKU: </strong> {data.sku}</p>
+        </a>
     </a>
   )
 }
