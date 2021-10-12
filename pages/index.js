@@ -65,7 +65,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}> {bible}
+        <h1 className={styles.title}> {bible.content}
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
