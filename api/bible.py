@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import json
 from http.server import BaseHTTPRequestHandler
 
-def verseGrab:
+def verseGrab():
     url = 'https://www.bible.com/en-GB/verse-of-the-day'
     headers = {
         'User-Agent': 'My User Agent 1.0',
@@ -22,7 +22,7 @@ def verseGrab:
     verse = {}
     verse['content'] = todaysVerseContent
     verse['ref'] = todaysVerse
-return verse
+    return verse
 
 
 
