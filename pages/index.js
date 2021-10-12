@@ -18,6 +18,10 @@ function Barcode() {
     return json;
   }
   
+
+
+
+
   function handleKeyDown(e) {
     if (e.key === 'Enter') {
       setSKU(e.target.value);
@@ -42,6 +46,17 @@ function Barcode() {
 }
 
 export default function Home() {
+  function Bible() {
+    const API_URL = 'api/bible';
+    var { data, error } = useSWR(API_URL, fetcher);
+  
+    async function fetcher(url) {
+      const res = await fetch(url);
+      const json = await res.json();
+      return json;
+    }
+  }
+  const [bible, setBible] = useState(Bible())
   return (
     <div className={styles.container}>
       <Head>
@@ -50,7 +65,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h1 className={styles.title}> {bible}
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
