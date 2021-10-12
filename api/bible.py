@@ -1,7 +1,10 @@
 import requests
 import re
-
+import html
+import sys
 from bs4 import BeautifulSoup
+import json
+from http.server import BaseHTTPRequestHandler
 
 def verseGrab:
     url = 'https://www.bible.com/en-GB/verse-of-the-day'
