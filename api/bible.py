@@ -12,7 +12,11 @@ def verseGrab():
         'User-Agent': 'My User Agent 1.0',
         'From': 'youremail@domain.com'  # This is another valid field
     }
-    response = requests.get(url, headers=headers)
+    cookies = {'version': '111'}
+
+
+    
+    response = requests.get(url, headers=headers, cookies=cookies)
     title_search = re.search('<meta property=og:description content="(((.|\n)*))"><meta property=tw', str(response.content), re.IGNORECASE)
     soup = BeautifulSoup(response.content, 'html.parser')
     todaysVerseContent = soup.find_all('p', class_='yv-gray50 mt0 mb2')[0].text.replace("\n", " ")
