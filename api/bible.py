@@ -29,9 +29,11 @@ def verseGrab():
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
+        data = verseGrab()
+        jsonData = json.dumps(data)
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.send_header('Cache-Control', 's-maxage=5, stale-while-revalidate=2629743')
         self.end_headers()
-        self.wfile.write(verseGrab())
+        self.wfile.write(jsonData.encode())
         return
