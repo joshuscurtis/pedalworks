@@ -33,5 +33,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.send_header('Cache-Control', 's-maxage=5, stale-while-revalidate=2629743')
         self.end_headers()
-        self.wfile.write(verseGrab.encode())
+        self.wfile.write(verseGrab())
         return
