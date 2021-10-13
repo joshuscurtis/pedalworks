@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import fetch from 'isomorphic-unfetch';
 import { useState } from 'react'
 
-
+ var resp = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
 
 
 function Barcode() {
@@ -53,11 +53,14 @@ export default function Home() {
     async function fetcher(url) {
       const res = await fetch(url);
       const json = await res.json();
+
       return json;
     }
   }
   const [bible, setBible] = useState(Bible())
-  return (
+
+
+  if(!bible) return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -65,7 +68,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}> {bible.content}
+        <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
@@ -109,6 +112,12 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
+    </div>
+  )
+  else return (
+    <div>
+      <h1 className={styles.title}> {resp.content}  </h1>
+      <h2 className={styles.title}> {resp.ref}  </h2>
     </div>
   )
 }
