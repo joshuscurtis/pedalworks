@@ -5,7 +5,7 @@ import axios from 'axios';
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react'
 
-var resp = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
+var data = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
 
 
 function Barcode() {
@@ -59,15 +59,16 @@ function getVerse() {
 }
 
 export default function Home() {
-
-  const [updateData, setUpdateData] = useState("loading");
-
+  var loading = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
+  const [updateData, setUpdateData] = useState(loading);
+  const [verseArray, setVerseArray] = useState(loading.content.split(' '));
   useEffect(() => {
     console.log("useEffect");
     async function fetchData() {
       const request2 = await axios.get('api/bible');
       setUpdateData(request2.data);
-      console.log("updateData");
+      setVerseArray(request2.data.content.split(' '))
+      console.log(verseArray);
       console.log(updateData);
       return request2;
     }
