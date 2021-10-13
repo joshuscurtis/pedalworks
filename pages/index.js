@@ -62,6 +62,9 @@ export default function Home() {
   var loading = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
   const [updateData, setUpdateData] = useState(loading);
   const [verseArray, setVerseArray] = useState(loading.content.split(' '));
+  const [input, setInput] = useState("")
+  const [hide, setHide] = useState(false)
+
   useEffect(() => {
     console.log("useEffect");
     async function fetchData() {
@@ -74,13 +77,45 @@ export default function Home() {
     }
     fetchData();
   }, []);
+  
 
-
-  if (updateData !== 'loading') return (
-    <div>
-      <h1 className={styles.title}> {updateData.content}  </h1>
-      <h2 className={styles.title}> {updateData.ref}  </h2>
+  if (updateData !== 'loading' && updateData.content == input) return (
+    <div> 
+    {hide &&
+    verseArray.map(word => <a>{word + " "}</a>)}      <p></p>
+      <textarea onChange={(e) => setInput(e.target.value)}></textarea>
+      <p> {updateData.ref}  </p>
+      <h1>You got it right!</h1>
+      <button onClick={(e) => setHide(!hide)}>
+        {hide &&
+         "Hide"}
+         {!hide &&
+         "Unhide"}
+      </button>
     </div>
+    
+  )
+  if (updateData !== 'loading') return (
+    <div> 
+      
+    
+    
+    {hide &&
+    verseArray.map(word => <a>{word + " "}</a>)}
+
+      <p></p>
+      <textarea onChange={(e) => setInput(e.target.value)}>
+        Hello there, this is some text in a text area
+      </textarea>
+      <p> {updateData.ref}  </p>
+      <button onClick={(e) => setHide(!hide)}>
+        {hide &&
+         "Hide"}
+         {!hide &&
+         "Unhide"}
+      </button>
+    </div>
+    
   )
 
   if (updateData == 'loading') return (
