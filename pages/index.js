@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr';
 import fetch from 'isomorphic-unfetch';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
  var resp = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
 
@@ -45,20 +45,30 @@ function Barcode() {
   )
 }
 
-export default function Home() {
-  function Bible() {
-    const API_URL = 'api/bible';
-    var { data, error } = useSWR(API_URL, fetcher);
-  
-    async function fetcher(url) {
-      const res = await fetch(url);
-      const json = await res.json();
+function getVerse() {
+  const API_URL = 'api/bible';
+  var { data, error } = useSWR(API_URL, fetcher);
 
-      return json;
-    }
+  async function fetcher(url) {
+    const res = await fetch(url);
+    const json = await res.json();
+
+    return json;
   }
-  const [bible, setBible] = useState(Bible())
+}
 
+export default function Home() {
+  const [bible, setBible] = useState(getVerse())
+
+  console.log(bible)
+
+
+  if (bible) (
+    <div>
+      <h1 className={styles.title}> {resp.content}  </h1>
+      <h2 className={styles.title}> {resp.ref}  </h2>
+    </div>
+  )
 
   if(!bible) return (
     <div className={styles.container}>
@@ -114,7 +124,7 @@ export default function Home() {
       </footer>
     </div>
   )
-  else return (
+  if (bible) (
     <div>
       <h1 className={styles.title}> {resp.content}  </h1>
       <h2 className={styles.title}> {resp.ref}  </h2>
