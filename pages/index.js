@@ -75,16 +75,14 @@ export default function Home() {
   }, [updateData]);
 
 
-  if (updateData !== 'loading') return
-   (
+  if (updateData !== 'loading') return (
     <div>
       <h1 className={styles.title}> {updateData.content}  </h1>
       <h2 className={styles.title}> {updateData.ref}  </h2>
     </div>
   )
 
-  if (updateData == 'loading') return 
-    (
+  if (updateData == 'loading') return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
