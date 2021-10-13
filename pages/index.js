@@ -66,7 +66,7 @@ export default function Home() {
     console.log("useEffect");
     async function fetchData() {
       const request2 = await axios.get('api/bible');
-      setUpdateData(request2);
+      setUpdateData(request2.data);
       console.log("updateData");
       console.log(updateData);
       return request2;
