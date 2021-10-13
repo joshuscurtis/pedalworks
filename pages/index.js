@@ -72,7 +72,7 @@ export default function Home() {
       return request2;
     }
     fetchData();
-  }, [updateData]);
+  }, []);
 
 
   if (updateData !== 'loading') return (
