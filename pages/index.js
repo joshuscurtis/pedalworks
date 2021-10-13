@@ -72,13 +72,13 @@ export default function Home() {
       return request2;
     }
     fetchData();
-  }, [updateData]);
+  }, []);
 
 
-  if (updateData != 'loading') (
+  if (updateData !== 'loading') (
     <div>
-      <h1 className={styles.title}> {resp.content}  </h1>
-      <h2 className={styles.title}> {resp.ref}  </h2>
+      <h1 className={styles.title}> {updateData.content}  </h1>
+      <h2 className={styles.title}> {updateData.ref}  </h2>
     </div>
   )
 
