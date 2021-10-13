@@ -69,11 +69,10 @@ export default function Home() {
       setUpdateData(request2);
       console.log("updateData");
       console.log(updateData);
-
       return request2;
     }
     fetchData();
-  }, []);
+  }, [updateData]);
 
 
   if (updateData !== 'loading') (
