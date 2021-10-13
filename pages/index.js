@@ -68,6 +68,7 @@ export default function Home() {
       const request2 = await axios.get('api/bible');
       setUpdateData(request2);
       console.log("updateData");
+      console.log(updateData);
 
       return request2;
     }
