@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import useSWR from 'swr';
+import axios from 'axios';
 import fetch from 'isomorphic-unfetch';
 import { useState, useEffect } from 'react'
 
- var resp = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
+var resp = {"content": "If anyone acknowledges that Jesus is the Son of God, God lives in them and they in God.", "ref": "1 John 4:15 (NIV)"}
 
 
 function Barcode() {
@@ -58,19 +59,30 @@ function getVerse() {
 }
 
 export default function Home() {
-  const [bible, setBible] = useState(getVerse())
 
-  console.log(bible)
+  const [updateData, setUpdateData] = useState("loading");
+
+  useEffect(() => {
+    console.log("useEffect");
+    async function fetchData() {
+      const request2 = await axios.get('api/bible');
+      setUpdateData(request2);
+      console.log("updateData");
+
+      return request2;
+    }
+    fetchData();
+  }, [updateData]);
 
 
-  if (bible) (
+  if (updateData != 'loading') (
     <div>
       <h1 className={styles.title}> {resp.content}  </h1>
       <h2 className={styles.title}> {resp.ref}  </h2>
     </div>
   )
 
-  if(!bible) return (
+  return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -122,12 +134,6 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
-    </div>
-  )
-  if (bible) (
-    <div>
-      <h1 className={styles.title}> {resp.content}  </h1>
-      <h2 className={styles.title}> {resp.ref}  </h2>
     </div>
   )
 }
