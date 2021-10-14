@@ -94,7 +94,7 @@ export default function Verse() {
       const request2 = await axios.get("api/bible");
       setUpdateData(request2.data);
       setVerseArray(request2.data.content.split(" "));
-      setVerseArrayMix(shuffle(request2.data.content.split("")))
+      setVerseArrayMix(shuffle(request2.data.content.split(" ")))
       console.log(verseArray);
       console.log(updateData);
       return request2;
