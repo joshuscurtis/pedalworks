@@ -1,5 +1,5 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Verse.module.css";
 import useSWR from "swr";
 import axios from "axios";
 import fetch from "isomorphic-unfetch";
@@ -83,8 +83,10 @@ export default function Verse() {
   };
   const [updateData, setUpdateData] = useState(loading);
   const [verseArray, setVerseArray] = useState(loading.content.split(" "));
+  const [verseArrayMix, setVerseArrayMix] = useState(shuffle(loading.content.split(" ")));
   const [input, setInput] = useState("");
   const [hide, setHide] = useState(true);
+  const [mix, setMix] = useState(true);
 
   useEffect(() => {
     console.log("useEffect");
@@ -92,40 +94,50 @@ export default function Verse() {
       const request2 = await axios.get("api/bible");
       setUpdateData(request2.data);
       setVerseArray(request2.data.content.split(" "));
+      setVerseArrayMix(shuffle(request2.data.content.split("")))
       console.log(verseArray);
       console.log(updateData);
       return request2;
     }
     fetchData();
   }, []);
+  function shuffle(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
-  if (updateData !== "loading" && updateData.content == input)
+
+  if (updateData !== "loading")
     return (
-      <div className={styles.content}>
-        {hide && verseArray.map((word) => <a>{word + " "}</a>)} <p></p>
-        <textarea rows="4" cols="50" onChange={(e) => setInput(e.target.value)}>
-          Can you remember the verse?
-        </textarea>        <p> {updateData.ref} </p>
-        <h1>You got it right!</h1>
+      <div>
+       <div className={styles.words}> {hide && verseArray.map((word) => <a className={styles.word}>{word + " "}</a>)}  </div>
+        <div className={styles.words}> {mix && verseArrayMix.map((word) => <a className={styles.word}>{word + " "}</a>)} </div>
+
+        <p></p>
+        <textarea className={styles.textarea} onChange={(e) => setInput(e.target.value)}>
+        </textarea>
+        <p> {updateData.ref} </p>
+        {updateData.content.toLowerCase() == input.toLowerCase() && <h1>You got it right!</h1>}
         <button onClick={(e) => setHide(!hide)}>
           {hide && "Hide"}
           {!hide && "Unhide"}
         </button>
-      </div>
-    );
-  if (updateData !== "loading")
-    return (
-      <div>
-        {hide && verseArray.map((word) => <a>{word + " "}</a>)}
-
-        <p></p>
-        <textarea className={styles.textarea} onChange={(e) => setInput(e.target.value)}>
-        Can you remember the verse?
-        </textarea>
-        <p> {updateData.ref} </p>
-        <button onClick={(e) => setHide(!hide)}>
-          {hide && "Hide"}
-          {!hide && "Unhide"}
+        <button onClick={(e) => setMix(!mix)}>
+          {mix && "Mix"}
+          {!mix && "Unmix"}
         </button>
       </div>
     );
