@@ -18,12 +18,14 @@ def finder(pn):
         raw = requests.get(url, headers=headers1)
         soup = BeautifulSoup(raw.content, "html.parser")
         title = soup.title.text.split('|')
+        response_data = ""
         print()
         print("----------INTRO----------------")
 
         s = raw.text
         matches = re.findall('copy-positioning-statement="(.+)"', s)
         print(html.unescape(matches[0]))
+        response_data = html.unescape(matches[0])
         print()
 
         print("----------MAIN----------------")
@@ -68,7 +70,7 @@ def finder(pn):
         print('not a accessorey!')
         print("Unexpected error:", sys.exc_info())
 
-    return "Josh"
+    return response_data
 
 
 def getBarcode(part_number):
