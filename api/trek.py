@@ -19,6 +19,7 @@ def finder(pn):
         soup = BeautifulSoup(raw.content, "html.parser")
         title = soup.title.text.split('|')
         response_data = ""
+        content = {}
         print()
         print("----------INTRO----------------")
 
@@ -26,6 +27,7 @@ def finder(pn):
         matches = re.findall('copy-positioning-statement="(.+)"', s)
         print(html.unescape(matches[0]))
         response_data = html.unescape(matches[0])
+        content["intro"] = html.unescape(matches[0])
         print()
 
         print("----------MAIN----------------")
@@ -41,7 +43,9 @@ def finder(pn):
         para3 = soup.select_one('#overview > div:nth-child(3) > p')
         print(para3.text)
         print()
-        
+        content["para1"] = para1.text
+        content["para2"] = para2.text
+        content["para3"] = para3.text
         
         print("----------FEATURES----------------")
         features = soup.find_all('li', class_='mb-1 pl-4')
@@ -54,8 +58,8 @@ def finder(pn):
         print("</ul>"+"\n")
         print("<p>"+para2.text+"</p>"+"\n")
         print("<p>"+para3.text+"</p>"+"\n")
-        response_data = response_data +"<p>"+para1.text +"</p>"+"\n" +"<p>"+para2.text +"</p>"+"\n" +"<p>"+para3.text +"</p>"+"\n"
-        
+        response_data = featuresres
+
     except:
         print('not a bike')
     try:
@@ -73,8 +77,8 @@ def finder(pn):
     except:
         print('not a accessorey!')
         print("Unexpected error:", sys.exc_info())
-    print(response_data)
-    return response_data
+    print("RES",response_data)
+    return content
 
 
 def getBarcode(part_number):
