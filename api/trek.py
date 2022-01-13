@@ -54,7 +54,7 @@ def finder(pn):
         print("</ul>"+"\n")
         print("<p>"+para2.text+"</p>"+"\n")
         print("<p>"+para3.text+"</p>"+"\n")
-        response_data = response_data +"<p>"+para1.text +"</p>"+"\n" +"<p>"+para2.text +"</p>"+"\n" +"<p>"+para3.text +"</p>"+"\n" + featuresres
+        response_data = response_data +"<p>"+para1.text +"</p>"+"\n" +"<p>"+para2.text +"</p>"+"\n" +"<p>"+para3.text +"</p>"+"\n"
     except:
         print('not a bike')
     try:
@@ -72,7 +72,7 @@ def finder(pn):
     except:
         print('not a accessorey!')
         print("Unexpected error:", sys.exc_info())
-
+    print(response_data)
     return response_data
 
 
@@ -103,7 +103,6 @@ def getBarcode(part_number):
 class handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        finder("35677")
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
