@@ -41,7 +41,8 @@ def finder(pn):
         para3 = soup.select_one('#overview > div:nth-child(3) > p')
         print(para3.text)
         print()
-
+        
+        
         print("----------FEATURES----------------")
         features = soup.find_all('li', class_='mb-1 pl-4')
 
@@ -52,6 +53,7 @@ def finder(pn):
         print("</ul>"+"\n")
         print("<p>"+para2.text+"</p>"+"\n")
         print("<p>"+para3.text+"</p>"+"\n")
+        response_data = response_data +"<p>"+para1.text +"</p>"+"\n" +"<p>"+para2.text +"</p>"+"\n" +"<p>"+para3.text +"</p>"+"\n"
     except:
         print('not a bike')
     try:
