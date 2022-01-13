@@ -1,0 +1,25 @@
+.textarea {
+    padding: 10px;
+    width: 95%;
+    justify-content: center;
+    margin-top: 10px;
+    margin-left: 2.5%;
+    font-size: 2em;
+}
+.content {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.word {
+    color: white;
+    background-color: gray;
+    margin: 5px;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.words {
+    padding: 10px;
+}
