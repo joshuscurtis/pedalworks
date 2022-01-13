@@ -5,6 +5,7 @@ import sys
 from bs4 import BeautifulSoup
 import json
 from http.server import BaseHTTPRequestHandler
+import urlparse
 
 
 def finder(pn):
@@ -111,5 +112,7 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
+        o = urlparse.urlparse(self.path)
+        print(urlparse.parse_qs(o.query))
         self.wfile.write(json.dumps(finder("35677")).encode())
         return
