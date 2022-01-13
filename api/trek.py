@@ -113,6 +113,6 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'application/json')
         self.end_headers()
         o = urlparse.urlparse(self.path)
-        print(urlparse.parse_qs(o.query))
+        print(o)
         self.wfile.write(json.dumps(finder("35677")).encode())
         return
