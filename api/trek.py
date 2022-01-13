@@ -49,11 +49,12 @@ def finder(pn):
         for feature in features:
             print(feature.text)
             print("<li>"+feature.text+"</li>"+"\n")
+            features = features + "<li>"+feature.text+"</li>"+"\n"
             print()
         print("</ul>"+"\n")
         print("<p>"+para2.text+"</p>"+"\n")
         print("<p>"+para3.text+"</p>"+"\n")
-        response_data = response_data +"<p>"+para1.text +"</p>"+"\n" +"<p>"+para2.text +"</p>"+"\n" +"<p>"+para3.text +"</p>"+"\n"
+        response_data = response_data +"<p>"+para1.text +"</p>"+"\n" +"<p>"+para2.text +"</p>"+"\n" +"<p>"+para3.text +"</p>"+"\n" + features
     except:
         print('not a bike')
     try:
