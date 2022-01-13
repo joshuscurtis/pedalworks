@@ -111,7 +111,7 @@ class handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-type', 'application/json')
         self.end_headers()
-        o = self.path[12:]
+        o = self.path[13:]
         print(o)
         print(self.path)
         self.wfile.write(json.dumps(finder(o)).encode())
